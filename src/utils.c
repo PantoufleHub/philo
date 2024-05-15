@@ -6,7 +6,7 @@
 /*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:38:57 by aperron           #+#    #+#             */
-/*   Updated: 2024/03/06 22:17:35 by aperron          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:37:31 by aperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,28 @@ long	my_atoi(char *str)
 	return (value * neg);
 }
 
-double	elapsed_time(t_timer timer)
+void	cpy_timer(t_timer *t1, t_timer t2)
 {
-    struct timeval	current_time;
-	double			elapsed_seconds;
-    double			elapsed_microseconds;
+	(*t1).start_time.tv_sec = t2.start_time.tv_sec;
+	(*t1).start_time.tv_usec = t2.start_time.tv_usec;
+}
 
-    gettimeofday(&current_time, NULL);
-    elapsed_seconds = (double)(current_time.tv_sec - timer.start_time.tv_sec);
-    elapsed_microseconds = (double)(current_time.tv_usec - timer.start_time.tv_usec);
-    return (elapsed_seconds + elapsed_microseconds / 1e6);
+int	elapsed_time_ms(t_timer timer)
+{
+	struct timeval	current_time;
+	int				elapsed_milliseconds;
+	long			elapsed_microseconds;
+
+	gettimeofday(&current_time, NULL);
+	elapsed_microseconds = (current_time.tv_sec - timer.start_time.tv_sec)
+		* 1000000L + (current_time.tv_usec - timer.start_time.tv_usec);
+	elapsed_milliseconds = elapsed_microseconds / 1000L;
+	return (elapsed_milliseconds);
+}
+
+char	*get_color(int num)
+{
+	static char	*colors[6] = {RED, YEL, GRN, CYN, BLU, MAG};
+
+	return (colors[num % 6]);
 }

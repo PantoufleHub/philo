@@ -6,7 +6,7 @@
 /*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:26:50 by aperron           #+#    #+#             */
-/*   Updated: 2024/03/06 21:04:34 by aperron          ###   ########.fr       */
+/*   Updated: 2024/04/26 15:29:18 by aperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ void	foreach(t_list *list, void(*f)(void *))
 		list = list->next;
 	}
 }
+
+// void	foreach(t_list *list, void(*f)(void *))
+// {
+// 	while (list)
+// 	{
+// 		f(list->content);
+// 		list = list->next;
+// 	}
+// }
 
 // void	clear_list(t_list *list, void (*del)(void *))
 // {

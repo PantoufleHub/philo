@@ -6,7 +6,7 @@
 /*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:32:06 by aperron           #+#    #+#             */
-/*   Updated: 2024/03/06 22:19:13 by aperron          ###   ########.fr       */
+/*   Updated: 2024/05/15 17:54:40 by aperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	valid_args(int argc, char *argv[])
 		return (0);
 	while (index < argc)
 	{
-		if (!is_num(argv[index]))
+		if (!is_num(argv[index]) || my_atoi(argv[index]) <= 0)
 			return (0);
 		index++;
 	}

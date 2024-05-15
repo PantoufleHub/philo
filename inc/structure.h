@@ -6,12 +6,19 @@
 /*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 07:11:36 by aperron           #+#    #+#             */
-/*   Updated: 2024/03/06 22:53:02 by aperron          ###   ########.fr       */
+/*   Updated: 2024/05/15 17:22:29 by aperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
+
+typedef enum e_state
+{
+	sleeping,
+	thinking,
+	eating,
+}	t_state;
 
 typedef struct s_list
 {
@@ -24,29 +31,41 @@ typedef struct s_timer
 	struct timeval	start_time;
 }	t_timer;
 
+typedef struct s_fork
+{
+	int				is_used;
+	int				next_user;
+	pthread_mutex_t	*update_mutex;
+}	t_fork;
+
 typedef struct s_world
 {
 	int				the_show_must_go_on;
-	int				nb_philosophers;
+	int				nb_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_meals;
-	char			*forks;
 	t_timer			time_of_creation;
-	pthread_mutex_t	*display_mutex;
-	pthread_mutex_t	*fork_mutex;
+	t_fork			**forks;
+	pthread_mutex_t	*print_mutex;
+	pthread_mutex_t	*end_mutex;
 }	t_world;
 
 typedef struct s_philo
 {
-	int			nb;
-	int			alive;
-	int			meals_had;
-	t_timer		time_state_started;
-	t_timer		time_last_meal;
-	t_world		*world;
-	pthread_t	thread;
+	int				nb;
+	int				alive;
+	int				meals_had;
+	char			*print_color;
+	int				holding_foks[2];
+	t_state			state;
+	t_fork			**adjacent_forks;
+	t_timer			time_state_started;
+	t_world			*world;
+	t_timer			time_last_meal;
+	pthread_t		thread;
+	pthread_mutex_t	*meal_mutex;
 }	t_philo;
 
 #endif
