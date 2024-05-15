@@ -6,7 +6,7 @@
 /*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:16:14 by aperron           #+#    #+#             */
-/*   Updated: 2024/05/15 17:22:56 by aperron          ###   ########.fr       */
+/*   Updated: 2024/05/15 19:14:02 by aperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	put_forks_in_philosophers_hands(t_world *world, t_philo *philo)
 {
 	philo->adjacent_forks = malloc(sizeof(t_fork) * 2);
-
 	philo->adjacent_forks[0] = world->forks[philo->nb - 1];
 	if (philo->nb == 1 && world->nb_philos > 1)
 		philo->adjacent_forks[1] = world->forks[world->nb_philos - 1];
@@ -76,7 +75,6 @@ void	set_the_table(t_world *world)
 		new_fork->next_user = (((fork_index) % 2) + fork_index + 1);
 		if (fork_index + 1 == world->nb_philos)
 			new_fork->next_user = 1;
-		// printf("CREATED FORK FOR PHILO %d\n", new_fork->next_user);
 		new_fork->update_mutex = malloc(sizeof(pthread_mutex_t));
 		pthread_mutex_init(new_fork->update_mutex, NULL);
 		world->forks[fork_index] = new_fork;

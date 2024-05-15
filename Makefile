@@ -6,7 +6,7 @@
 #    By: aperron <aperron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 07:09:43 by aperron           #+#    #+#              #
-#    Updated: 2024/05/15 10:16:50 by aperron          ###   ########.fr        #
+#    Updated: 2024/05/15 19:33:22 by aperron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= philo
 
 SRC_FOLDER	= ./src/
 
-SRCS_BLANK	= main philo list utils init parse monitor
+SRCS_BLANK	= main philo philo2 list utils init parse monitor
 
 SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 
